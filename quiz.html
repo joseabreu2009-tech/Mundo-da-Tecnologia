@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Exposição educativa sobre história da tecnologia, inteligência artificial, quiz e vídeos.">
+<title>Quiz tecnológico | Mundo da Tecnologia</title><link rel="stylesheet" href="style.css"></head>
+<body>
+<header><div class="wrap">
+  <div class="brand">✦ EXPOSIÇÃO • MUNDO DA TECNOLOGIA</div>
+  <nav aria-label="Menu principal">
+    <a href="index.html">Início</a><a href="historia.html">História</a><a href="ia.html">Inteligência artificial</a><a href="quiz.html">Quiz</a><a href="videos.html">Vídeos</a>
+  </nav>
+</div></header>
+<main class="wrap">
+<section class="hero"><div class="eyebrow">03 • Teste seus conhecimentos</div><h1>Quiz tecnológico</h1><p>Escolha uma alternativa para cada pergunta e toque em “Ver minha pontuação”.</p></section>
+<form id="quiz">
+ <div class="question"><h3>1. Como eram muitos dos primeiros computadores eletrônicos?</h3>
+ <label><input type="radio" name="q1" value="a"> Pequenos como um relógio</label><label><input type="radio" name="q1" value="b"> Grandes e ocupavam salas inteiras</label><label><input type="radio" name="q1" value="c"> Eram usados apenas para jogos</label></div>
+ <div class="question"><h3>2. O que é inteligência artificial?</h3>
+ <label><input type="radio" name="q2" value="a"> Uma bateria especial</label><label><input type="radio" name="q2" value="b"> Um tipo de tela</label><label><input type="radio" name="q2" value="c"> Uma área que cria sistemas para realizar tarefas associadas à inteligência</label></div>
+ <div class="question"><h3>3. Qual destes é um exemplo de uso de IA?</h3>
+ <label><input type="radio" name="q3" value="a"> Recomendações de vídeos</label><label><input type="radio" name="q3" value="b"> Um lápis comum</label><label><input type="radio" name="q3" value="c"> Uma cadeira sem recursos digitais</label></div>
+ <div class="question"><h3>4. O que devemos fazer ao receber uma informação importante de uma IA?</h3>
+ <label><input type="radio" name="q4" value="a"> Acreditar sem verificar</label><label><input type="radio" name="q4" value="b"> Conferir em fontes confiáveis</label><label><input type="radio" name="q4" value="c"> Compartilhar imediatamente</label></div>
+ <div class="question"><h3>5. Qual mudança aconteceu com os celulares ao longo do tempo?</h3>
+ <label><input type="radio" name="q5" value="a"> Ficaram sem utilidade</label><label><input type="radio" name="q5" value="b"> Perderam todas as funções</label><label><input type="radio" name="q5" value="c"> Ganharam recursos como câmera e internet</label></div>
+ <button class="btn" type="submit">Ver minha pontuação</button><button class="btn" type="reset">Refazer</button>
+ <p id="result" aria-live="polite"></p>
+</form>
+</main>
+<footer><div class="wrap">Projeto educativo • Explore, aprenda e descubra como a tecnologia transforma o mundo.</div></footer>
+<script>
+document.getElementById('quiz').addEventListener('submit',function(e){
+ e.preventDefault();
+ const answers={q1:'b',q2:'c',q3:'a',q4:'b',q5:'c'};
+ let score=0, unanswered=0;
+ for(const [q,a] of Object.entries(answers)){
+  const selected=this.querySelector('input[name="'+q+'"]:checked');
+  if(!selected) unanswered++; else if(selected.value===a) score++;
+ }
+ const result=document.getElementById('result');
+ if(unanswered){result.textContent='Responda às '+unanswered+' pergunta(s) que faltam para ver sua pontuação.';return;}
+ result.textContent='Você acertou '+score+' de 5 questões! '+(score===5?'Parabéns! Excelente conhecimento!':score>=3?'Muito bem! Continue aprendendo.':'Bom esforço! Leia os conteúdos e tente novamente.');
+});
+document.getElementById('quiz').addEventListener('reset',()=>{document.getElementById('result').textContent='';});
+</script></body></html>
